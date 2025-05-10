@@ -1,0 +1,36 @@
+﻿@model List<Usuario>
+@{
+    ViewData["Title"] = "USUARIOS";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<a class="btn btn-primary" asp-action="Usuarios" asp-controller="Home">Todos</a>
+<a class="btn btn-primary" asp-action="Usuarios" asp-controller="Home" asp-route-estado="activo">Activos</a>
+<a class="btn btn-primary" asp-action="Usuarios" asp-controller="Home" asp-route-estado="inactivo">Inactivos</a>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model)
+        {
+            <tr>
+                <td>@user.id</td>
+                <td>@user.persona.nombre @user.persona.apellido</td>
+                <td>@user.correo</td>
+                <td>@user.contrasenia</td>
+                <td>@user.rol.nombre</td>
+                <td>@user.estado</td>
+            </tr>
+        }
+    </tbody>
+</table>

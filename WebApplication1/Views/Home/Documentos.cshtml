@@ -1,0 +1,42 @@
+﻿@model List<Documento>
+@{
+    ViewData["Title"] = "DOCUMENTOS";
+}
+<h1>@ViewData["Title"]</h1>
+
+<a class="btn btn-primary" asp-action="Documentos" asp-controller="Home">Todos</a>
+<a class="btn btn-primary" asp-action="Documentos" asp-controller="Home" asp-route-estado="Pendiente">Pendientes</a>
+<a class="btn btn-primary" asp-action="Documentos" asp-controller="Home" asp-route-estado="Rechazado">Rechazados</a>
+<a class="btn btn-primary" asp-action="Documentos" asp-controller="Home" asp-route-estado="Aprobado">Aprobados</a>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Requisitos</th>
+            <th scope="col">Fecha Vencimiento</th>
+            <th scope="col">Acción</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var documento in Model)
+        {
+            <tr>
+                <td>@documento.id</td>
+                <td>@documento.tipo</td>
+                <td>@documento.estado</td>
+                <td>@documento.requisitos</td>
+                <td>@documento.venFecha</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Derivacion" asp-controller="Home" asp-route-idDocumento="@documento.id">
+                        Ver derivación
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,80 @@
+﻿@model Derivacion
+
+@if (Model?.area != null)
+{
+    <h1>Documento N° @Model.documento.id derivado a @Model.area.nombre</h1>
+    <ul class="list-group">
+        <li class="list-group-item">
+            Documento:
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Tipo: @Model.documento.tipo
+                </li>
+                <li class="list-group-item">
+                    Estado: @Model.documento.estado
+                </li>
+                <li class="list-group-item">
+                    Fecha: @Model.documento.fecha
+                </li>
+                <li class="list-group-item">
+                    Fecha Vencimiento: @Model.documento.venFecha
+                </li>
+                <li class="list-group-item">
+                    Requisitos: @Model.documento.requisitos
+                </li>
+                <li class="list-group-item">
+                    Descripción: @Model.documento.descripcion
+                </li>
+                <li class="list-group-item">
+                    Adjunto: <form asp-action="DescargarBase64" asp-controller="Home" method="post">
+                        <input type="hidden" name="base64Texto" value="@Model.documento.base64" />
+                        <input type="hidden" name="nombreArchivo" value="archivo.docx" />
+                        <button type="submit">Descargar Archivo</button>
+                    </form>
+
+                </li>
+            </ul>
+        </li>
+        <li class="list-group-item">
+            Trámite
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Asunto: @Model.documento.tramite.asunto
+                </li>
+                <li class="list-group-item">
+                    Fecha recepción: @Model.documento.tramite.fechaRecepcion
+                </li>
+                <li class="list-group-item">
+                    Observación: @Model.documento.tramite.observacion
+                </li>
+                <li class="list-group-item">
+                    Días: @Model.documento.tramite.cantidadDias
+                </li>
+            </ul>
+        </li>
+        <li class="list-group-item">
+            Persona
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Nombre: @Model.documento.tramite.persona.nombre @Model.documento.tramite.persona.apellido
+                </li>
+                <li class="list-group-item">
+                    Nro Documento: @Model.documento.tramite.persona.numeroDocumento
+                </li>
+                <li class="list-group-item">
+                    Teléfono: @Model.documento.tramite.persona.telefono
+                </li>
+                <li class="list-group-item">
+                    Cargo: @Model.documento.tramite.persona.cargo
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+}
+else
+{
+    <h1>Este documemto aún no ha sido derivado</h1>
+}
+
+
